@@ -1,0 +1,44 @@
+
+docker -version
+  384  docker --version
+  385  docker images
+  386  docker run -it ubuntu:v1
+  387  docker run -it ubuntu
+  388  ls
+  389  mkdir mydocker
+  390  cd mydocker
+  391  docker --version
+  392  nano Dockerfile
+  393  docker build -t myubuntuimage
+  394  ls
+  395  Dockerfile
+  396  docker build -t myubuntuimage .
+  397  nano Dockerfile
+  398  docker build -t myubuntuimage .
+  399  nano Dockerfile 
+  400  docker build -t myubuntuimage .
+  401  docker images
+  402  docker run myubuntuimage:latest 
+  403  docker run myubuntuimage
+  404  docker login
+  405  docker run
+  406  docker run -it ubuntu:latest 
+  407  docker build -t myubuntuimage .
+  408  docker run myubuntuimage
+  409  nano Dockerfile 
+  410  docker run myubuntuimage
+  411  docker build -t myubuntuimage .
+  412  docker run myubuntuimage
+  413  docker run -it myubuntuimage bash
+  414  docker ps
+  415  docker ps -a
+  416  docker inspect be3fbcc48ba7
+  417  docker login
+  418  docker tag myubuntuimage ayushiitpkd/myubuntuimage:latest
+  419  docker image
+  420  docker images
+  421  docker push  ayushiitpkd/myubuntuimage:latest
+  422  history 25
+  423  history 50
+
+docker pull ayushiitpkd/docker-quickstart
