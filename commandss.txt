@@ -12,6 +12,7 @@ docker build -t myproject-image . Build Docker Image
 docker run --name myproject-container myproject-image Create/Run a Container from the Image
 docker ps -a
 docker export myproject-container > myproject-container.tar EXPORT the container as a file
+docker push <username>/<repo-name>:<tag>  to push image in a docker repo
 
 //MAKEFILE
 # ---------------------------
