@@ -206,4 +206,41 @@ if [ "$count" -gt 2 ]; then
 else
     echo "this is okay!"
 fi
+/////////////
+IMAGE_NAME = myapp
+CONTAINER_NAME = myapp-container
+PORT = 8080
 
+# Build Docker image
+build:
+	docker build -t $(IMAGE_NAME) .
+
+# Run container
+run:
+	docker run -d --name $(CONTAINER_NAME) -p $(PORT):80 $(IMAGE_NAME)
+
+# Stop container (ignore error if already stopped)
+stop:
+	-docker stop $(CONTAINER_NAME)
+
+# Remove container (ignore error if missing)
+rm-container:
+	-docker rm $(CONTAINER_NAME)
+
+# Remove image (ignore error if missing)
+rm-image:
+	-docker rmi $(IMAGE_NAME)
+
+# Remove BOTH container + image
+clean:
+	-docker stop $(CONTAINER_NAME)
+	-docker rm $(CONTAINER_NAME)
+	-docker rmi $(IMAGE_NAME)
+
+# Show running containers
+ps:
+	docker ps
+
+# Show all images
+images:
+	docker images
