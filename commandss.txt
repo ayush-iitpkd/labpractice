@@ -2,3 +2,170 @@
 git setting- ssh key gen ssh key add
  ssh -T git@github.com
 
+go to folder
+git init
+git remote add origin "repo link"
+git remote -v to check
+git push -u origin main for first push
+git push for other pushes
+docker build -t myproject-image . Build Docker Image
+docker run --name myproject-container myproject-image Create/Run a Container from the Image
+docker ps -a
+docker export myproject-container > myproject-container.tar EXPORT the container as a file
+
+//MAKEFILE
+# ---------------------------
+# Generic Makefile Template
+# Supports: C, C++, Java, Python
+# ---------------------------
+
+# ----- SETTINGS -----
+# Choose your language: c, cpp, java, python
+LANG = c
+
+# Folder containing source files
+SRC_DIR = src
+
+# Output folder
+BIN_DIR = bin
+
+# Compiler settings for C/C++
+CC = gcc
+CXX = g++
+CFLAGS = -Wall -O2
+CXXFLAGS = -Wall -O2
+
+# Java settings
+JAVAC = javac
+JAVA = java
+
+# Python settings
+PYTHON = python3
+
+# -----------------------------------
+# DO NOT EDIT BELOW THIS LINE
+# -----------------------------------
+
+# Collect all files by extension
+C_SRCS   = $(wildcard $(SRC_DIR)/*.c)
+CPP_SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+JAVA_SRCS = $(wildcard $(SRC_DIR)/*.java)
+PY_FILES = $(wildcard $(SRC_DIR)/*.py)
+
+# Default target
+all:
+ifeq ($(LANG),c)
+	@$(MAKE) c-build
+else ifeq ($(LANG),cpp)
+	@$(MAKE) cpp-build
+else ifeq ($(LANG),java)
+	@$(MAKE) java-build
+else ifeq ($(LANG),python)
+	@echo "Python does not need building."
+else
+	@echo "Unknown language: $(LANG)"
+endif
+
+# ------- C build -------
+c-build: $(C_SRCS)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) $^ -o $(BIN_DIR)/app
+	@echo "C build complete!"
+
+run-c:
+	$(BIN_DIR)/app
+
+# ------- C++ build -------
+cpp-build: $(CPP_SRCS)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $(BIN_DIR)/app
+	@echo "C++ build complete!"
+
+run-cpp:
+	$(BIN_DIR)/app
+
+# ------- Java build ------
+java-build:
+	@mkdir -p $(BIN_DIR)
+	$(JAVAC) -d $(BIN_DIR) $(JAVA_SRCS)
+	@echo "Java build complete!"
+
+run-java:
+	$(JAVA) -cp $(BIN_DIR) Main   # Change Main if class name differs
+
+# ------- Python run ------
+run-python:
+	$(PYTHON) $(PY_FILES)
+
+# ------- Cleaning -------
+clean:
+	rm -rf $(BIN_DIR)
+	@echo "Cleaned!"
+
+just for c only 
+# ------------ SETTINGS ------------
+SRC_DIR = mycode      # <---- your custom folder name
+BIN_DIR = output      # <---- folder where executable will be stored
+CC = gcc
+CFLAGS = -Wall -O2
+
+# Collect all C files in your custom folder
+C_SRCS = $(wildcard $(SRC_DIR)/*.c)
+
+# Default target
+all: build
+
+# --------- BUILD C FILES ----------
+build: $(C_SRCS)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) $^ -o $(BIN_DIR)/program
+	@echo "Build complete! Executable saved as $(BIN_DIR)/program"
+
+# --------- RUN PROGRAM ------------
+run:
+	$(BIN_DIR)/program
+
+# --------- CLEAN ------------------
+clean:
+	rm -rf $(BIN_DIR)
+	@echo "Cleaned!"
+
+#!/usr/bin/env bash
+
+read -p "Enter a number: " n
+
+if [ $n -gt 10 ]; then
+    echo "Number is greater than 10"
+else
+    echo "Number is 10 or less"
+fi
+
+count=1
+
+while [ $count -le 5 ]
+do
+    echo "Count: $count"
+    count=$((count+1))
+done
+
+
+nano count_horse.sh
+#!/bin/bash
+
+# Ask user for file name
+read -p "Enter filename: " file
+
+# Check file exists
+if [[ ! -f "$file" ]]; then
+    echo "File does not exist!"
+    exit 1
+fi
+
+# Count occurrences of 'horse'
+count=$(grep -oi "horse" "$file" | wc -l)
+
+echo "The word 'horse' appears $count times in the file."
+
+
+chmod +x count_horse.sh
+./count_horse.sh
