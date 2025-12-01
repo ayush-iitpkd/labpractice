@@ -170,3 +170,40 @@ echo "The word 'horse' appears $count times in the file."
 
 chmod +x count_horse.sh
 ./count_horse.sh
+
+#!/bin/bash
+
+# Change this to your own name (no spaces)
+YOURNAME="yourname"
+
+# a. Create directory
+DIR="$HOME/Test1by$YOURNAME"
+mkdir -p "$DIR"
+echo "Directory created at: $DIR"
+
+# b. Create new text file test1.txt
+FILE="$DIR/test1.txt"
+: > "$FILE"
+echo "Created file: $FILE"
+
+# c. Append given text into test1.txt
+cat >> "$FILE" <<EOF
+To manage large file uploads without disrupting the user experience, the bulk 
+upload process is handled as an asynchronous background job. When a file is 
+submitted, the system initiates a job and provides real-time status updates to the 
+user (e.g., "uploading," "Processing," "Completed").
+EOF
+
+echo "Text appended to $FILE"
+
+# d. Count the occurrences of the word 'upload' (case-insensitive)
+count=$(grep -oi "upload" "$FILE" | wc -l)
+echo "The word 'upload' appears $count times."
+
+# e. If count > 2, print message
+if [ "$count" -gt 2 ]; then
+    echo "use a different word"
+else
+    echo "this is okay!"
+fi
+
